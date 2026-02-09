@@ -3,8 +3,9 @@ import numpy as np
 
 
 
-def portfolio_sigma(weights, key_financials):
-    cov_matrix = key_financials["cov_matrix"]
+def portfolio_sigma(weights, covariance_matrix):
+    """Calculate the portfolio sigma based on the weights and covariance matrix"""
+    cov_matrix = covariance_matrix["cov_matrix"]
 
     # Ensure consistent ordering
     assets = list(weights.keys())
@@ -24,6 +25,7 @@ def portfolio_sigma(weights, key_financials):
 
 
 def calculate_portfolio_return(weights, expected_returns):
+    """Calculate the portfolio returns based on the weights and the expected returns from each asset"""
 
     assets = list(weights.keys())
     w = np.array([weights[a] for a in assets])
@@ -35,6 +37,7 @@ def calculate_portfolio_return(weights, expected_returns):
 
 
 def calculate_sharpe_ratio(sigma_yearly, portfolio_return, risk_free_rate):
+   """Calculate the Sharpe Ratio based on the sigma, return of the portfolio and the risk free rate"""
    sharpe_ratio = (portfolio_return-risk_free_rate) / sigma_yearly
    
    return sharpe_ratio
